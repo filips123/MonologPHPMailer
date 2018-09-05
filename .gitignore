@@ -1,0 +1,33 @@
+# IDE & System related files
+Thumbs.db
+Desktop.ini
+.buildpath
+.project
+.settings
+.DS_Store
+.idea
+.vscode
+
+# Builds
+/build/
+
+# Composer dependencies
+/vendor/
+
+# Composer lock file
+composer.lock
+
+# PHAR files
+*.phar
+
+# PHPUnit configuration
+phpunit.xml
+
+# PHP CodeSniffer configuration
+phpcs.xml
+
+# phpDocumentor configuration
+phpdoc.xml
+
+# Not ignore .gitkeep files
+!.gitkeep
