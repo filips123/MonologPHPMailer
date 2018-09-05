@@ -1,0 +1,49 @@
+language: php
+
+php:
+  - 5.5
+  - 5.6
+  - 7.0
+  - 7.1
+  - 7.2
+  - hhvm
+  - nightly
+
+env:
+  - MONOLOG=^1.0
+  - MONOLOG=^2.0@dev
+
+matrix:
+  allow_failures:
+    - php: hhvm
+    - php: nightly
+  fast_finish: true
+  exclude:
+    - php: 5.5
+      env: MONOLOG=^1.0
+    - php: 5.6
+      env: MONOLOG=^1.0
+    - php: 7.0
+      env: MONOLOG=^1.0
+    - php: hhvm
+      env: MONOLOG=^1.0
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+before_install:
+  - XDEBUG_INI="$HOME/.phpenv/versions/$(phpenv global)/etc/conf.d/xdebug.ini"
+
+install:
+  - [ -f $XDEBUG_INI ] && mv $XDEBUG_INI $HOME/xdebug.ini
+  - travis_retry composer update --no-interaction --no-progress --no-suggest --prefer-dist
+  - travis_retry composer require monolog/monolog:$MONOLOG
+  - [ -f $HOME/xdebug.ini ] && mv $HOME/xdebug.ini $XDEBUG_INI
+
+script:
+  - composer test
+
+after_script:
+  - travis_retry wget --no-verbose https://scrutinizer-ci.com/ocular.phar
+  - php ocular.phar code-coverage:upload --format=php-clover build/clover.xml
