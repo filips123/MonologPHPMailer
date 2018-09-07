@@ -20,7 +20,7 @@ MonologPHPMailer is a [PHPMailer][link-phpmailer] handler for [Monolog][link-mon
 
 ### Requirements
 
-MonologPHPMailer requires *[PHP][link-php] 5.5.0* or higher, *[Monolog][link-monolog] 1.x* and *[PHPMailer][link-phpmailer] 6.x*. Monolog 2.x **is not** supported, but it will be supported in the future.
+MonologPHPMailer requires *[PHP][link-php] 5.5.0* or higher, *[Monolog][link-monolog] 1.x or 2.x* and *[PHPMailer][link-phpmailer] 6.x*.
 
 ### Using Composer
 

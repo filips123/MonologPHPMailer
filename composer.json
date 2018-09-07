@@ -1,6 +1,6 @@
 {
     "name": "filips123/monolog-phpmailer",
-    "description": "PHPMailer handler for Monolog.",
+    "description": "PHPMailer handler for Monolog",
     "keywords": [
         "log",
         "logging",
