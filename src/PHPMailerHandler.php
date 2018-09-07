@@ -1,17 +1,9 @@
 <?php
 
-namespace MonologPHPMailer;
-
-use Monolog\Formatter\FormatterInterface;
-use Monolog\Formatter\LineFormatter;
-use Monolog\Handler\MailHandler;
-use Monolog\Logger;
-use PHPMailer\PHPMailer\PHPMailer;
-
 /**
- * PHPMailer handler for Monolog.
+ * Loads required handler.
  *
- * It uses [PHPMailer](https://github.com/PHPMailer/PHPMailer/) to send emails.
+ * It loads required handler class for Monolog 1.x or 2.x depending on its version.
  *
  * @since 1.0.0
  *
@@ -21,71 +13,11 @@ use PHPMailer\PHPMailer\PHPMailer;
  *
  * @package MonologPHPMailer
  */
-class PHPMailerHandler extends MailHandler
-{
-    /**
-     * A PHPMailer instance.
-     *
-     * @var PHPMailer $mailer
-     */
-    protected $mailer;
 
-    /**
-     * Constructs the PHPMailer handler.
-     *
-     * @param PHPMailer  $mailer A PHPMailer instance to use.
-     * @param int|string $level  The minimum logging level at which this handler will be triggered.
-     * @param bool       $bubble Whether the messages that are handled can bubble up the stack or not.
-     *
-     * @return void
-     */
-    public function __construct(PHPMailer $mailer, $level = Logger::ERROR, $bubble = true)
-    {
-        parent::__construct($level, $bubble);
-        $this->mailer = $mailer;
-    }
+use Monolog\Logger;
 
-    /**
-     * Sends a mail with the given content.
-     *
-     * @param string $content Formatted email body to be sent.
-     * @param array  $records The array of log records that formed this content.
-     *
-     * @return void
-     */
-    protected function send($content, array $records)
-    {
-        $mailer = $this->buildMessage($content, $records);
-        $mailer->send();
-    }
-
-    /**
-     * Builds a message to be sent.
-     *
-     * @param string    $content Formatted email body to be sent.
-     * @param array     $records The array of log records that formed this content.
-     *
-     * @return PHPMailer Builded message.
-     */
-    public function buildMessage($content, $records)
-    {
-        $mailer = clone $this->mailer;
-
-        if (substr($content, 0, 1) == '<') {
-            $mailer->isHTML(true);
-        }
-
-        // @codingStandardsIgnoreStart
-        if ($records) {
-            $subjectFormatter = new LineFormatter($mailer->Subject);
-            $mailer->Subject = $subjectFormatter->format($this->getHighestRecord($records));
-        }
-        // @codingStandardsIgnoreEnd
-
-        // @codingStandardsIgnoreStart
-        $mailer->Body = $content;
-        // @codingStandardsIgnoreEnd
-
-        return $mailer;
-    }
+if (Logger::API == 1) {
+    class_alias('MonologPHPMailer\PHPMailerHandler1', 'MonologPHPMailer\PHPMailerHandler');
+} else {
+    class_alias('MonologPHPMailer\PHPMailerHandler2', 'MonologPHPMailer\PHPMailerHandler');
 }
