@@ -30,11 +30,11 @@ You should just add `filips123/monolog-phpmailer` to your project dependencies i
 
 ```json
 {
-    "require": [
+    "require": {
         "monolog/monolog": "^1.0",
         "phpmailer/phpmailer": "^6.0",
         "filips123/monolog-phpmailer": "^1.0"
-    ]
+    }
 }
 ```
 
@@ -91,6 +91,12 @@ $logger->alert('Something went wrong!');
 
 ```
 
+## Versioning
+This library uses [SemVer][link-semver] SemVer for versioning. For the versions available, see the [tags on this repository][link-tags].
+
+## License
+This library is licensed under the MIT license. See the [LICENSE][link-license-file] file for details.
+
 [icon-stable-version]: https://img.shields.io/packagist/v/filips123/monolog-phpmailer.svg?style=flat-square&label=Latest+Stable+Version
 [icon-unstable-version]: https://img.shields.io/packagist/vpre/filips123/monolog-phpmailer.svg?style=flat-square&label=Latest+Unstable+Version
 [icon-downloads]: https://img.shields.io/packagist/dt/filips123/monolog-phpmailer.svg?style=flat-square&label=Downloads
@@ -113,3 +119,6 @@ $logger->alert('Something went wrong!');
 [link-phpmailer]: https://github.com/PHPMailer/PHPMailer/
 [link-composer]: https://getcomposer.org/
 [link-handler]: https://github.com/filips123/MonologPHPMailer/blob/master/src/PHPMailerHandler.php
+[link-semver]: https://semver.org/
+[link-tags]: https://github.com/filips123/MonologPHPMailer/tags/
+[link-license-file]: https://github.com/filips123/MonologPHPMailer/blob/master/LICENSE
