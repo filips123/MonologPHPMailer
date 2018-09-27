@@ -42,7 +42,7 @@ Do not forget to run `composer install` and add `require 'vendor/autoload.php';`
 
 ### Manually Installation
 
-Alternatively, you could download [`PHPMailerHandler.php`][link-handler] from GitHub and then manually include it in your script. You also have to install Monolog and PHPMailer manually.
+Alternatively, you could download all files in directory [`src`][link-handlers] from GitHub and then manually include them in your script. You also have to install Monolog and PHPMailer manually.
 
 ## Usage
 
@@ -118,7 +118,7 @@ This library is licensed under the MIT license. See the [LICENSE][link-license-f
 [link-monolog]: https://github.com/Seldaek/monolog/
 [link-phpmailer]: https://github.com/PHPMailer/PHPMailer/
 [link-composer]: https://getcomposer.org/
-[link-handler]: https://github.com/filips123/MonologPHPMailer/blob/master/src/PHPMailerHandler.php
+[link-handlers]: https://github.com/filips123/MonologPHPMailer/tree/master/src
 [link-semver]: https://semver.org/
 [link-tags]: https://github.com/filips123/MonologPHPMailer/tags/
 [link-license-file]: https://github.com/filips123/MonologPHPMailer/blob/master/LICENSE
