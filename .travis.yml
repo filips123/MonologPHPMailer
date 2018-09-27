@@ -9,24 +9,11 @@ php:
   - hhvm
   - nightly
 
-env:
-  - MONOLOG=^1.0
-  - MONOLOG=^2.0@dev
-
 matrix:
   allow_failures:
     - php: hhvm
     - php: nightly
   fast_finish: true
-  exclude:
-    - php: 5.5
-      env: MONOLOG=^2.0@dev
-    - php: 5.6
-      env: MONOLOG=^2.0@dev
-    - php: 7.0
-      env: MONOLOG=^2.0@dev
-    - php: hhvm
-      env: MONOLOG=^2.0@dev
 
 cache:
   directories:
@@ -34,11 +21,31 @@ cache:
 
 install:
   - travis_retry composer update --no-interaction --no-progress --no-suggest --prefer-dist
-  - travis_retry composer require monolog/monolog:$MONOLOG
+  - mkdir -p build/cov
 
 script:
-  - composer test
+  # Test with Monolog 1.x
+  - travis_retry composer require monolog/monolog:^1.0
+  - vendor/bin/phpcs
+  - vendor/bin/phpunit --coverage-php ./build/cov/monolog1.cov
+
+  # Test with Monolog 2.x
+  - |
+    if [[ ${TRAVIS_PHP_VERSION:0:1} == "7" && ${TRAVIS_PHP_VERSION:2:1} != "0" ]]
+    then
+      travis_retry composer require monolog/monolog:^2.0@dev
+      vendor/bin/phpcs
+      vendor/bin/phpunit --coverage-php ./build/cov/monolog2.cov
+    fi
 
 after_script:
-  - travis_retry wget --no-verbose https://scrutinizer-ci.com/ocular.phar
-  - php ocular.phar code-coverage:upload --format=php-clover build/clover.xml
+  # Merge coverage reports for tests with Monolog 1.x and 2.x
+  - vendor/bin/phpcov merge --clover ./build/clover.xml ./build/cov
+
+  # Upload coverage report when running PHP 7.2
+  - |
+    if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.2" ]]
+    then
+      travis_retry wget --no-verbose https://scrutinizer-ci.com/ocular.phar
+      php ocular.phar code-coverage:upload --format=php-clover build/clover.xml
+    fi
