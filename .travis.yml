@@ -1,4 +1,5 @@
 language: php
+dist: trusty
 
 php:
   - 5.5
@@ -6,11 +7,11 @@ php:
   - 7.0
   - 7.1
   - 7.2
+  - 7.3
   - nightly
 
 matrix:
   allow_failures:
-    - php: hhvm
     - php: nightly
   fast_finish: true
 
@@ -43,7 +44,7 @@ after_script:
 
   # Upload coverage report when running PHP 7.2
   - |
-    if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.2" ]]
+    if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.3" ]]
     then
       travis_retry wget --no-verbose https://scrutinizer-ci.com/ocular.phar
       php ocular.phar code-coverage:upload --format=php-clover build/clover.xml
