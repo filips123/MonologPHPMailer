@@ -10,7 +10,7 @@
     <exclude-pattern>*/vendor/*</exclude-pattern>
 
     <arg name="parallel" value="75" />
-    <arg name="basepath" value="."/>
+    <arg name="basepath" value="." />
     <arg name="colors" />
     <arg value="p" />
 
@@ -31,9 +31,9 @@
 
     <!-- Disallow blank line indentation and spaces at the end of line -->
     <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace">
-      <properties>
-        <property name="ignoreBlankLines" value="false" />
-      </properties>
+        <properties>
+            <property name="ignoreBlankLines" value="false" />
+        </properties>
     </rule>
     <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace.StartFile">
         <severity>10</severity>

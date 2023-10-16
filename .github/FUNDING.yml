@@ -1,11 +1,9 @@
 # Supported funding model platforms
 
-github:
 tidelift: packagist/filips123/monolog-phpmailer
 
-open_collective: filips123
+github: filips123
 patreon: filips
 ko_fi: filips
 liberapay: filips
-
-custom: ['https://donorbox.org/filips', 'https://buymeacoff.ee/filips', 'https://beerpay.io/filips123', 'https://tippin.me/@123filips123']
+custom: ['https://donorbox.org/filips', 'https://buymeacoff.ee/filips']
