@@ -43,6 +43,9 @@ jobs:
           key: ${{ runner.os }}-phpcs-${{ github.sha }}
           restore-keys: ${{ runner.os }}-phpcs-
 
+      - name: Install dependencies
+        run: composer install --classmap-authoritative --prefer-dist --no-interaction --no-progress
+
       - name: Run PHP CodeSniffer
         run: composer phpcs
 
@@ -76,6 +79,9 @@ jobs:
           path: ${{ steps.composer-cache-directory.outputs.directory }}
           key: ${{ runner.os }}-${{ matrix.php }}-composer-phpunit-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-${{ matrix.php }}-composer-phpunit-
+
+      - name: Install dependencies
+        run: composer install --classmap-authoritative --prefer-dist --no-interaction --no-progress
 
       - name: Run PHPUnit
         run: composer phpunit
