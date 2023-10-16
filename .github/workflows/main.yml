@@ -50,7 +50,7 @@ jobs:
         run: composer phpcs
 
   phpunit:
-    name: PHP CodeSniffer
+    name: PHPUnit
     runs-on: ubuntu-latest
 
     strategy:
@@ -87,7 +87,7 @@ jobs:
         run: composer phpunit
 
       - name: Upload coverage to Scrutinizer CI
-        if: (success() || failure()) && (matrix.php == '8.2' && matrix.os == 'ubuntu-latest')
+        if: always() && matrix.php == '8.2'
         run: |
           wget --no-verbose https://scrutinizer-ci.com/ocular.phar
           php ocular.phar code-coverage:upload --format=php-clover build/clover.xml
