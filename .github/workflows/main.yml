@@ -1,0 +1,87 @@
+name: Check
+
+on:
+  - push
+  - pull_request
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  phpcs:
+    name: PHP CodeSniffer
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          coverage: none
+
+      - name: Determine Composer cache directory
+        id: composer-cache-directory
+        run: echo "directory=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v3
+        if: always()
+        with:
+          path: ${{ steps.composer-cache-directory.outputs.directory }}
+          key: ${{ runner.os }}-composer-phpcs-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-phpcs-
+
+      - name: Cache PHP CodeSniffer results
+        uses: actions/cache@v3
+        if: always()
+        with:
+          path: /tmp/phpcs.*.cache
+          key: ${{ runner.os }}-phpcs-${{ github.sha }}
+          restore-keys: ${{ runner.os }}-phpcs-
+
+      - name: Run PHP CodeSniffer
+        run: composer phpcs
+
+  phpunit:
+    name: PHP CodeSniffer
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ["8.1", "8.2", "8.3", "8.4"]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: pcov
+
+      - name: Determine Composer cache directory
+        id: composer-cache-directory
+        run: echo "directory=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v3
+        if: always()
+        with:
+          path: ${{ steps.composer-cache-directory.outputs.directory }}
+          key: ${{ runner.os }}-${{ matrix.php }}-composer-phpunit-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-${{ matrix.php }}-composer-phpunit-
+
+      - name: Run PHPUnit
+        run: composer phpunit
+
+      - name: Upload coverage to Scrutinizer CI
+        if: (success() || failure()) && (matrix.php == '8.2' && matrix.os == 'ubuntu-latest')
+        run: |
+          wget --no-verbose https://scrutinizer-ci.com/ocular.phar
+          php ocular.phar code-coverage:upload --format=php-clover build/clover.xml
