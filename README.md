@@ -1,5 +1,3 @@
-
-
 MonologPHPMailer
 ================
 
@@ -21,7 +19,7 @@ MonologPHPMailer requires [PHP][link-php] 8.1 or higher, [Monolog][link-monolog]
 
 ### Using Composer
 
-The reccomended way to install MonologPHPMailer is with [Composer][link-composer], dependency manager for PHP.
+The recommended way to install MonologPHPMailer is with [Composer][link-composer], a dependency manager for PHP.
 
 You should just add `filips123/monolog-phpmailer` to your project dependencies in `composer.json`. It will also install Monolog and PHPMailer, but it is recommended to add them manually to `composer.json`.
 
@@ -39,11 +37,11 @@ Do not forget to run `composer install` and add `require 'vendor/autoload.php';`
 
 ### Manually Installation
 
-Alternatively, you could download all files in directory [`src`][link-handlers] from GitHub and then manually include them in your script. You also have to install Monolog and PHPMailer manually.
+Alternatively, you could download all files in the [`src`][link-handlers] directory from GitHub and then manually include them in your script. You also have to install Monolog and PHPMailer manually.
 
 ## Usage
 
-You should just add handler `MonologPHPMailer\PHPMailerHandler` to your logger. It's first argument must be PHPMailer instance.
+You should just add the handler `MonologPHPMailer\PHPMailerHandler` to your logger. Its first argument must be a PHPMailer instance.
 
 ## Example
 
@@ -89,9 +87,11 @@ $logger->alert('Something went wrong!');
 ```
 
 ## Versioning
+
 This library uses [SemVer][link-semver] SemVer for versioning. For the versions available, see the [tags on this repository][link-tags].
 
 ## License
+
 This library is licensed under the MIT license. See the [LICENSE][link-license-file] file for details.
 
 [icon-version]: https://img.shields.io/packagist/v/filips123/monolog-phpmailer.svg?style=flat-square&label=version

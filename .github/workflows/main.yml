@@ -86,8 +86,10 @@ jobs:
       - name: Run PHPUnit
         run: composer phpunit
 
-      - name: Upload coverage to Scrutinizer CI
-        if: always() && matrix.php == '8.2'
-        run: |
-          wget --no-verbose https://scrutinizer-ci.com/ocular.phar
-          php ocular.phar code-coverage:upload --format=php-clover build/clover.xml
+      # Disabled because Scrutinizer Ocular has some problems
+      #
+      # - name: Upload coverage to Scrutinizer CI
+      #   if: always() && matrix.php == '8.2'
+      #   run: |
+      #     wget --no-verbose https://scrutinizer-ci.com/ocular.phar
+      #     php ocular.phar code-coverage:upload --format=php-clover build/clover.xml
