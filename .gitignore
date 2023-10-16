@@ -11,10 +11,12 @@ Desktop.ini
 # Builds
 /build/
 
-# Composer dependencies
-/vendor/
+# Cache
+*.cache
+*.tmp
 
-# Composer lock file
+# Composer files
+/vendor/
 composer.lock
 
 # PHAR files
