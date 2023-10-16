@@ -3,16 +3,13 @@
 MonologPHPMailer
 ================
 
-[![Latest Stable Version][icon-stable-version]][link-packagist]
-[![Latest Untable Version][icon-unstable-version]][link-packagist]
-[![Total Downloads][icon-downloads]][link-packagist]
-[![License][icon-license]][link-license]
-[![PHP][icon-php]][link-php]
-
-[![Linux Build Status][icon-travis]][link-travis]
-[![Windows Build Status][icon-appveyor]][link-appveyor]
-[![Code Coverage][icon-coverage]][link-coverage]
-[![Code Quality][icon-quality]][link-quality]
+[![version][icon-version]][link-packagist]
+[![downloads][icon-downloads]][link-packagist]
+[![license][icon-license]][link-license]
+[![php][icon-php]][link-php]
+[![build][icon-build]][link-build]
+[![coverage][icon-coverage]][link-coverage]
+[![quality][icon-quality]][link-quality]
 
 MonologPHPMailer is a [PHPMailer][link-phpmailer] handler for [Monolog][link-monolog]. It enables you to send logs to emails with PHPMailer.
 
@@ -20,20 +17,20 @@ MonologPHPMailer is a [PHPMailer][link-phpmailer] handler for [Monolog][link-mon
 
 ### Requirements
 
-MonologPHPMailer requires *[PHP][link-php] 5.5.0* or higher, *[Monolog][link-monolog] 1.x or 2.x* and *[PHPMailer][link-phpmailer] 6.x*.
+MonologPHPMailer requires [PHP][link-php] 8.1 or higher, [Monolog][link-monolog] 3.x, and [PHPMailer][link-phpmailer] 6.x.
 
 ### Using Composer
 
 The reccomended way to install MonologPHPMailer is with [Composer][link-composer], dependency manager for PHP.
 
-You should just add `filips123/monolog-phpmailer` to your project dependencies in `composer.json`. It will also install Monolog and PHPMailer, but it is reccomended to add them manually to `composer.json`.
+You should just add `filips123/monolog-phpmailer` to your project dependencies in `composer.json`. It will also install Monolog and PHPMailer, but it is recommended to add them manually to `composer.json`.
 
 ```json
 {
     "require": {
-        "monolog/monolog": "^1.0",
+        "monolog/monolog": "^3.0",
         "phpmailer/phpmailer": "^6.0",
-        "filips123/monolog-phpmailer": "^1.0"
+        "filips123/monolog-phpmailer": "^2.0"
     }
 }
 ```
@@ -97,21 +94,18 @@ This library uses [SemVer][link-semver] SemVer for versioning. For the versions 
 ## License
 This library is licensed under the MIT license. See the [LICENSE][link-license-file] file for details.
 
-[icon-stable-version]: https://img.shields.io/packagist/v/filips123/monolog-phpmailer.svg?style=flat-square&label=Latest+Stable+Version
-[icon-unstable-version]: https://img.shields.io/packagist/vpre/filips123/monolog-phpmailer.svg?style=flat-square&label=Latest+Unstable+Version
-[icon-downloads]: https://img.shields.io/packagist/dt/filips123/monolog-phpmailer.svg?style=flat-square&label=Downloads
-[icon-license]: https://img.shields.io/packagist/l/filips123/monolog-phpmailer.svg?style=flat-square&label=License
-[icon-php]: https://img.shields.io/packagist/php-v/filips123/monolog-phpmailer.svg?style=flat-square&label=PHP
-[icon-travis]: https://img.shields.io/travis/com/filips123/MonologPHPMailer.svg?style=flat-square&label=Linux+Build+Status
-[icon-appveyor]: https://img.shields.io/appveyor/ci/filips123/MonologPHPMailer.svg?style=flat-square&label=Windows+Build+Status
-[icon-coverage]: https://img.shields.io/scrutinizer/coverage/g/filips123/MonologPHPMailer.svg?style=flat-square&label=Code+Coverage
-[icon-quality]: https://img.shields.io/scrutinizer/g/filips123/MonologPHPMailer.svg?style=flat-square&label=Code+Quality
+[icon-version]: https://img.shields.io/packagist/v/filips123/monolog-phpmailer.svg?style=flat-square&label=version
+[icon-downloads]: https://img.shields.io/packagist/dt/filips123/monolog-phpmailer.svg?style=flat-square&label=downloads
+[icon-license]: https://img.shields.io/packagist/l/filips123/monolog-phpmailer.svg?style=flat-square&label=license
+[icon-php]: https://img.shields.io/packagist/php-v/filips123/monolog-phpmailer.svg?style=flat-square&label=php
+[icon-build]: https://img.shields.io/github/actions/workflow/status/filips123/MonologPHPMailer/main.yml?style=flat-square&label=build
+[icon-coverage]: https://img.shields.io/scrutinizer/coverage/g/filips123/MonologPHPMailer.svg?style=flat-square&label=coverage
+[icon-quality]: https://img.shields.io/scrutinizer/g/filips123/MonologPHPMailer.svg?style=flat-square&label=quality
 
 [link-packagist]: https://packagist.org/packages/filips123/monolog-phpmailer/
 [link-license]: https://choosealicense.com/licenses/mit/
 [link-php]: https://php.net/
-[link-travis]: https://travis-ci.com/filips123/MonologPHPMailer/
-[link-appveyor]: https://ci.appveyor.com/project/filips123/monologphpmailer/
+[link-build]: https://github.com/filips123/MonologPHPMailer/actions
 [link-coverage]: https://scrutinizer-ci.com/g/filips123/MonologPHPMailer/code-structure/
 [link-quality]: https://scrutinizer-ci.com/g/filips123/MonologPHPMailer/
 
